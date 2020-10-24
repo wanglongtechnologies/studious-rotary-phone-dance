@@ -1,0 +1,2726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.js" defer></script>
+    <title>Dance Competition</title>
+  </head>
+  <body
+    x-data="{ open: false }"
+    :class="{ 'overflow-hidden md:overflow-auto': open === true }"
+    class="antialiased"
+  >
+    <!-- Navbar-->
+    <header class="relative py-6 bg-gray-800">
+      <div
+        class="fixed inset-0 z-20 h-full transition origin-top-right transform md:hidden"
+        x-show="open"
+        x-description="Mobile menu, show/hide based on menu open state."
+        x-transition:enter="duration-150 ease-out"
+        x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="duration-100 ease-in"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+        style="display: none"
+      >
+        <div
+          class="h-full overflow-hidden bg-indigo-600"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="main-menu"
+        >
+          <div class="flex justify-between h-full px-4 sm:px-6 pt-7">
+            <div class="flex flex-col justify-center h-full px-2 pb-3 -mt-6">
+              <a
+                href="/home"
+                class="block px-3 py-2 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Home</a
+              >
+              <a
+                href="/events"
+                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Events</a
+              >
+              <a
+                href="/rules"
+                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Rules &amp; Regulations</a
+              >
+              <a
+                href="/register"
+                class="flex items-center px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Register Now
+                <svg
+                  class="w-8 h-8 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+            <div class="-mr-2">
+              <button
+                @click="open = false"
+                type="button"
+                class="inline-flex items-center justify-center p-2 text-indigo-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:text-white"
+                aria-label="Close menu"
+              >
+                <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-screen-xl px-4 mx-auto sm:px-6">
+        <nav class="relative flex items-center justify-between sm:h-10 md:justify-center">
+          <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+            <div class="flex items-center justify-between w-full md:w-auto">
+              <a href="/home" aria-label="Home">
+                <img
+                  class="w-auto h-8 sm:h-10"
+                  src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+                  alt="Logo"
+                />
+              </a>
+              <div class="flex items-center -mr-2 md:hidden">
+                <button
+                  @click="open = true"
+                  type="button"
+                  class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
+                  id="main-menu"
+                  aria-label="Main menu"
+                  aria-haspopup="true"
+                  x-bind:aria-expanded="open"
+                >
+                  <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:flex md:space-x-10">
+            <a
+              href="/home"
+              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
+              >Home</a
+            >
+            <a
+              href="/events"
+              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
+              >Events</a
+            >
+            <a
+              href="/rules"
+              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
+              >Rules &amp; Regulations</a
+            >
+          </div>
+          <div
+            class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0"
+          >
+            <a
+              href="#"
+              class="inline-flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+            >
+              Register
+              <svg
+                class="w-5 h-5 ml-2 -mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- Header -->
+    <section class="bg-gray-800">
+      <div class="container pt-12 pb-16 mx-auto sm:pt-20 sm:pb-24">
+        <div class="text-center">
+          <h1
+            class="text-4xl font-extrabold leading-10 text-white sm:text-5xl sm:leading-none sm:tracking-tight"
+          >
+            Rules &amp; Regulations
+          </h1>
+          <p class="max-w-xl mx-auto mt-5 text-lg leading-7 text-gray-400 sm:text-xl">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, laborum doloribus
+            dolores explicabo
+          </p>
+          <div class="max-w-xl mx-auto mt-5 sm:flex sm:justify-center sm:mt-8">
+            <div>
+              <a
+                href="#"
+                class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo sm:py-4 sm:text-lg sm:px-10"
+              >
+                Download Rules
+              </a>
+            </div>
+            <div class="mt-3 sm:mt-0 sm:ml-3">
+              <a
+                href="#"
+                class="flex items-center justify-center w-full px-8 py-3 text-base font-medium leading-6 text-indigo-600 transition duration-150 ease-in-out bg-white border border-transparent rounded-full hover:text-indigo-500 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo sm:py-4 sm:text-lg sm:px-10"
+              >
+                Download Syllabus
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Content -->
+    <div class="relative pt-16 pb-6 bg-white sm:pt-20">
+      <div class="container">
+        <div class="mx-auto prose text-gray-600">
+          <h2>Rules & Regulations</h2>
+          <h3>Application</h3>
+          <h4>Terms</h4>
+          <ol>
+            <li>
+              Contestants are only allowed to submit <strong>ONE (1)</strong> entry per event.
+            </li>
+            <li>Contestants can participate in multiple events but must adhere to the rules.</li>
+            <li>
+              Age will be calculated according to the birthdate from the participant’s
+              Identification Card.
+            </li>
+            <li>
+              Participants participating in Grade A events are not allowed to participate in Grade B
+              events.
+            </li>
+            <li>
+              The adjudicators’ decision shall be final and no correspondence will be entertained.
+            </li>
+          </ol>
+          <h4>Registration</h4>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-3 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Prerequisites
+              </div>
+            </div>
+            <div class="px-4 border-t border-gray-200 sm:px-5">
+              <ol>
+                <li>
+                  Please ensure you have a Google account. If you don't, click
+                  <a target="_blank" href="https://l.wanglong.my/googlesignup">here</a> to sign up.
+                </li>
+                <li>
+                  Please ensure you have recorded your video according to the listed guideline in
+                  Video Section below.
+                </li>
+                <li>
+                  Please ensure you have paid for the event(s) that you would like to participate in
+                  and screenshot the receipt as proof.
+                </li>
+              </ol>
+            </div>
+            <div class="px-4 py-3 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Submission
+              </div>
+            </div>
+            <div class="px-4 border-t border-gray-200 sm:px-5">
+              <ol>
+                <li>
+                  Visit the submission form
+                  <a target="_blank" href="https://l.wanglong.my/dance">here</a>.
+                </li>
+                <li>Log in to your Google account.</li>
+                <li>Follow the steps and fill in all necessary details.</li>
+                <li>Attach your recorded video.</li>
+                <li>Attach your receipt.</li>
+              </ol>
+            </div>
+          </div>
+
+          <h3>Registration Fees</h3>
+          <h4>Grade A (up to Gold Syllabus)</h4>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div class="flex items-center justify-between">
+                <div
+                  class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+                >
+                  Ballroom Solo
+                </div>
+
+                <div
+                  class="flex items-center text-sm font-semibold leading-5 tracking-wide font-display"
+                >
+                  <svg
+                    class="flex-shrink-0 mr-1.5 h-6 w-6 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  RM50.00
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Quickstep
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango & Foxtrot
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Tango
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div class="flex items-center justify-between">
+                <div
+                  class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+                >
+                  Latin Solo
+                </div>
+
+                <div
+                  class="flex items-center text-sm font-semibold leading-5 tracking-wide font-display"
+                >
+                  <svg
+                    class="flex-shrink-0 mr-1.5 h-6 w-6 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  RM50.00
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div class="flex items-center justify-between">
+                <div
+                  class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+                >
+                  Latin Synchronize
+                </div>
+
+                <div
+                  class="flex items-center text-sm font-semibold leading-5 tracking-wide font-display"
+                >
+                  <svg
+                    class="flex-shrink-0 mr-1.5 h-6 w-6 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  RM80.00
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h4>Grade B (up to Bronze Syllabus)</h4>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div class="flex items-center justify-between">
+                <div
+                  class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+                >
+                  Ballroom Solo
+                </div>
+
+                <div
+                  class="flex items-center text-sm font-semibold leading-5 tracking-wide font-display"
+                >
+                  <svg
+                    class="flex-shrink-0 mr-1.5 h-6 w-6 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  RM50.00
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Quickstep
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Quickstep
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango & Foxtrot
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Tango
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div class="flex items-center justify-between">
+                <div
+                  class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+                >
+                  Latin Solo
+                </div>
+
+                <div
+                  class="flex items-center text-sm font-semibold leading-5 tracking-wide font-display"
+                >
+                  <svg
+                    class="flex-shrink-0 mr-1.5 h-6 w-6 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  RM50.00
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div class="flex items-center justify-between">
+                <div
+                  class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+                >
+                  Latin Synchronize
+                </div>
+
+                <div
+                  class="flex items-center text-sm font-semibold leading-5 tracking-wide font-display"
+                >
+                  <svg
+                    class="flex-shrink-0 mr-1.5 h-6 w-6 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path>
+                  </svg>
+                  RM80.00
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3>Payment</h3>
+          <p>Kindly remit your payment into the bank account below:</p>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div>
+              <div class="justify-between px-4 py-3 sm:px-6 sm:flex">
+                <div class="font-medium leading-5 text-gray-700 truncate">Account Name:</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">Malaysian Dancesport Berhad</div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-3 sm:px-6 sm:flex">
+                <div class="font-medium leading-5 text-gray-700 truncate">Account Number:</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">3199664808</div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-3 sm:px-6 sm:flex">
+                <div class="font-medium leading-5 text-gray-700 truncate">Bank Name:</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">Public Bank Berhad</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2>Events</h2>
+          <h3>Grade A (up to Gold Syllabus)</h3>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Ballroom Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Quickstep
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango & Foxtrot
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Tango
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Synchronize
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3>Grade B (up to Bronze Syllabus)</h3>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Ballroom Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Quickstep
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Quickstep
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango & Foxtrot
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz & Tango
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Synchronize
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Jive
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba & Samba
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-4 sm:px-6 sm:flex">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <svg
+                      class="sm:hidden flex-shrink-0 mr-1.5 h-6 w-6 text-gray-400"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha & Rumba
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2>Dance Syllabus</h2>
+          <p>Competitors must follow strictly to the restricted ISTD & NATD syllabus:</p>
+          <p>Grade A Category up to GOLD level</p>
+          <ul>
+            <li>Latin</li>
+          </ul>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Cha Cha (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic Movements</li>
+                    <li>New York</li>
+                    <li>Spot Turns to Left or Right</li>
+                    <li>Shoulder to Shoulder</li>
+                    <li>Hand to Hand</li>
+                    <li>Three Cha Cha Chas</li>
+                    <li>Side Steps</li>
+                    <li>There and Back</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Time Steps</li>
+                    <li>Fan</li>
+                    <li>Alemana</li>
+                    <li>Hockey Stick</li>
+                    <li>Natural Top</li>
+                    <li>Natural Opening Out Movement</li>
+                    <li>Closed Hip Twist</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Cha Cha (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Open Hip Twist</li>
+                    <li>Reverse Top</li>
+                    <li>Opening Out from Reverse Twist</li>
+                    <li>Aida</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Spiral Turns</li>
+                    <li>Cross Basic</li>
+                    <li>Cuban Breaks</li>
+                    <li>Chase</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Cha Cha (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Advanced Hip Twist</li>
+                    <li>Hip Twist Spiral</li>
+                    <li>Turkish Towel</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Sweetheart</li>
+                    <li>Follow My Leader</li>
+                    <li>Foot Changes</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Jive (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic in Place</li>
+                    <li>Fallaway Rock</li>
+                    <li>Fallaway Throwaway</li>
+                    <li>Link</li>
+                    <li>Change of Places Right to Left</li>
+                    <li>Change of Places Left to Right</li>
+                    <li>Change of Hands Behind Back</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Hip Bump</li>
+                    <li>American Spin</li>
+                    <li>Walks</li>
+                    <li>Stop and Go</li>
+                    <li>Mooch</li>
+                    <li>Whip</li>
+                    <li>Whip Throwaway</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Jive (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Reverse Whip</li>
+                    <li>Windmill</li>
+                    <li>Spanish Arms</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Rolling off the Arm</li>
+                    <li>Simple Spin</li>
+                    <li>Miami Special</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Jive (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Curly Whip</li>
+                    <li>Shoulder Spin</li>
+                    <li>Toe Heel Swivels</li>
+                    <li>Chugging</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Chicken Walks</li>
+                    <li>Catapult</li>
+                    <li>Stalking Walks, Flicks and Breaks</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Samba (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic Movements</li>
+                    <li>Whisks</li>
+                    <li>Samba Walks</li>
+                    <li>Rhythm Bounce</li>
+                    <li>Volta Movements</li>
+                    <li>Travelling BotaFogos Forward</li>
+                    <li>Criss Cross BotaFogos</li>
+                    <li>Travelling BotaFogos Back</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>BotaFogos to Promenade and Counter Promenade</li>
+                    <li>Criss Cross Volta</li>
+                    <li>Solo Spot Volta</li>
+                    <li>Foot Change</li>
+                    <li>Shadow Travelling Volta</li>
+                    <li>Reverse Turn</li>
+                    <li>CortaJaca</li>
+                    <li>Closed Rocks</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Samba (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Open Rocks</li>
+                    <li>Back Rocks</li>
+                    <li>Plait</li>
+                    <li>Rolling off the Arm</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Argentine Crosses</li>
+                    <li>Maypole</li>
+                    <li>Shadow Circular Volta</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Samba (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Contra BotaFogos</li>
+                    <li>Round about</li>
+                    <li>Natural Roll</li>
+                    <li>Reverse Roll</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Promenade and Counter Promenade Runs</li>
+                    <li>Three Step Turn</li>
+                    <li>Samba Locks</li>
+                    <li>Cruzados Walks and Rocks</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Rumba (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic Movements</li>
+                    <li>Cucarachas</li>
+                    <li>New York</li>
+                    <li>Spot Turn to Left or Right</li>
+                    <li>Shoulder to Shoulder</li>
+                    <li>Hand to Hand</li>
+                    <li>Progressive Walks Forward or Backward</li>
+                    <li>Side Steps</li>
+                    <li>Cuban Rocks</li>
+                    <li>Fan</li>
+                    <li>Alemana</li>
+                    <li>Hockey Stick</li>
+                    <li>Natural Top</li>
+                    <li>Opening Out to Right and Left</li>
+                    <li>Natural Opening Out Movement</li>
+                    <li>Closed Hip Twist</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul></ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Rumba (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Open Hip Twist</li>
+                    <li>Reverse Top</li>
+                    <li>Opening Out from Reverse Top</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Aida</li>
+                    <li>Spiral Turns</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Rumba (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Sliding Doors</li>
+                    <li>Fencing</li>
+                    <li>Three Threes</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Three Alemanas</li>
+                    <li>Hip Twist (Advanced Continuous and Circular)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul>
+            <li>Standard</li>
+          </ul>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Waltz (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Closed Changes</li>
+                    <li>Natural Turn</li>
+                    <li>Reverse Turn</li>
+                    <li>Natural Spin Turn</li>
+                    <li>Whisk</li>
+                    <li>Chasse from PP</li>
+                    <li>Closed Impetus</li>
+                    <li>Hesitation Change</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Outside Change</li>
+                    <li>Reverse Corte</li>
+                    <li>Back Whisk</li>
+                    <li>Basic Weave</li>
+                    <li>Double Reverse Spin</li>
+                    <li>Reverse Pivot</li>
+                    <li>Back Lock</li>
+                    <li>Progressive Chasse to R</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Waltz (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Weave from PP</li>
+                    <li>Closed Telemark</li>
+                    <li>Open Telemark and Cross Hesitation</li>
+                    <li>Open Telemark and Wing</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Open Impetus and Cross Hesitation</li>
+                    <li>Open Impetus and Wing</li>
+                    <li>Outside Spin</li>
+                    <li>Turning Lock</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Waltz (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Left Whisk</li>
+                    <li>Contra Check</li>
+                    <li>Closed Wing</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Turning Lock to R</li>
+                    <li>Fallaway Reverse and Slip Pivot</li>
+                    <li>Hover Corte</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Quickstep (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Quarter Turn to R</li>
+                    <li>Natural Turn</li>
+                    <li>Natural Turn with Hesitation</li>
+                    <li>Natural Pivot Turn</li>
+                    <li>Natural Spin Turn</li>
+                    <li>Progressive Chasse</li>
+                    <li>Chasse Reverse Turn</li>
+                    <li>Forward Lock</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Closed Impetus</li>
+                    <li>Back Lock</li>
+                    <li>Reverse Pivot</li>
+                    <li>Progressive Chasse to R</li>
+                    <li>Tipple Chasse to R</li>
+                    <li>Running Finish</li>
+                    <li>Natural Turn and Back Lock</li>
+                    <li>Double Reverse Spin</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Quickstep (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Quick Open Reverse</li>
+                    <li>Fishtail</li>
+                    <li>Running Right Turn</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Four Quick Run</li>
+                    <li>V6</li>
+                    <li>Closed Telemark</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Quickstep (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Cross Swivel</li>
+                    <li>Six Quick Run</li>
+                    <li>Rumba Cross</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Tipsy to R and L</li>
+                    <li>Hover Corte</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Tango (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Walk</li>
+                    <li>Progressive Side Step</li>
+                    <li>Progressive Link</li>
+                    <li>Closed Promenade</li>
+                    <li>Rock Turn</li>
+                    <li>Open Reverse Turn , Lady Outside</li>
+                    <li>Back Corte</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Open Reverse Turn, Lady In Line</li>
+                    <li>Progressive Side Step Reverse Turn</li>
+                    <li>Open Promenade</li>
+                    <li>L.F. and R.F. Rocks</li>
+                    <li>Natural Twist Turn</li>
+                    <li>Natural Promenade Turn</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Tango (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Promenade Link</li>
+                    <li>Four Step</li>
+                    <li>Back Open Promenade</li>
+                    <li>Outside Swivels</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Fallaway Promenade</li>
+                    <li>Four Step Change</li>
+                    <li>Brush Tap</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Tango (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Fallaway Four Step</li>
+                    <li>Oversway</li>
+                    <li>Basic Reverse Turn</li>
+                    <li>The Chase</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Fallaway Reverse and Slip Pevot</li>
+                    <li>Five Step</li>
+                    <li>Contra Check</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Slow Foxtrot (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Feather</li>
+                    <li>Three Step</li>
+                    <li>Natural Turn</li>
+                    <li>Reverse Turn</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Closed Impetus and Feather Finish</li>
+                    <li>Natural Weave</li>
+                    <li>Change Of Direction</li>
+                    <li>Basic Weave</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Slow Foxtrot (Silver)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Closed Telemark</li>
+                    <li>Open Telemark and Feather Ending</li>
+                    <li>Top Spin</li>
+                    <li>Hover Feather</li>
+                    <li>Hover Telemark</li>
+                    <li>Natural Telemark</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Hover Cross</li>
+                    <li>Open Telemark , Natural Turn , Outside Swivel and Feather Ending</li>
+                    <li>Open Impetus</li>
+                    <li>Weave from PP</li>
+                    <li>Reverse Wave</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Slow Foxtrot (Gold)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Natural Twist Turn</li>
+                    <li>Curved Feather to Back Feather</li>
+                    <li>Natural ZigZag from PP</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Fallaway Reverse and Slip Pivot</li>
+                    <li>Natural Hover Telemark</li>
+                    <li>Bounce Fallaway with Weave Ending</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p>Grade B Category up to BRONZE level</p>
+          <ul>
+            <li>Latin</li>
+          </ul>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Cha Cha (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic Movements</li>
+                    <li>New York</li>
+                    <li>Spot Turns to Left or Right</li>
+                    <li>Shoulder to Shoulder</li>
+                    <li>Hand to Hand</li>
+                    <li>Three Cha Cha Chas</li>
+                    <li>Side Steps</li>
+                    <li>There and Back</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Time Steps</li>
+                    <li>Fan</li>
+                    <li>Alemana</li>
+                    <li>Hockey Stick</li>
+                    <li>Natural Top</li>
+                    <li>Natural Opening Out Movement</li>
+                    <li>Closed Hip Twist</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Jive (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic in Place</li>
+                    <li>Fallaway Rock</li>
+                    <li>Fallaway Throwaway</li>
+                    <li>Link</li>
+                    <li>Change of Places Right to Left</li>
+                    <li>Change of Places Left to Right</li>
+                    <li>Change of Hands Behind Back</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Hip Bump</li>
+                    <li>American Spin</li>
+                    <li>Walks</li>
+                    <li>Stop and Go</li>
+                    <li>Mooch</li>
+                    <li>Whip</li>
+                    <li>Whip Throwaway</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Samba (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic Movements</li>
+                    <li>Whisks</li>
+                    <li>Samba Walks</li>
+                    <li>Rhythm Bounce</li>
+                    <li>Volta Movements</li>
+                    <li>Travelling BotaFogos Forward</li>
+                    <li>Criss Cross BotaFogos</li>
+                    <li>Travelling BotaFogos Back</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>BotaFogos to Promenade and Counter Promenade</li>
+                    <li>Criss Cross Volta</li>
+                    <li>Solo Spot Volta</li>
+                    <li>Foot Change</li>
+                    <li>Shadow Travelling Volta</li>
+                    <li>Reverse Turn</li>
+                    <li>CortaJaca</li>
+                    <li>Closed Rocks</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Rumba (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Basic Movements</li>
+                    <li>Cucarachas</li>
+                    <li>New York</li>
+                    <li>Spot Turn to Left or Right</li>
+                    <li>Shoulder to Shoulder</li>
+                    <li>Hand to Hand</li>
+                    <li>Progressive Walks Forward or Backward</li>
+                    <li>Side Steps</li>
+                    <li>Cuban Rocks</li>
+                    <li>Fan</li>
+                    <li>Alemana</li>
+                    <li>Hockey Stick</li>
+                    <li>Natural Top</li>
+                    <li>Opening Out to Right and Left</li>
+                    <li>Natural Opening Out Movement</li>
+                    <li>Closed Hip Twist</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul>
+            <li>Standard</li>
+          </ul>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Waltz (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Closed Changes</li>
+                    <li>Natural Turn</li>
+                    <li>Reverse Turn</li>
+                    <li>Natural Spin Turn</li>
+                    <li>Whisk</li>
+                    <li>Chasse from PP</li>
+                    <li>Closed Impetus</li>
+                    <li>Hesitation Change</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Outside Change</li>
+                    <li>Reverse Corte</li>
+                    <li>Back Whisk</li>
+                    <li>Basic Weave</li>
+                    <li>Double Reverse Spin</li>
+                    <li>Reverse Pivot</li>
+                    <li>Back Lock</li>
+                    <li>Progressive Chasse to R</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Quickstep (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Quarter Turn to R</li>
+                    <li>Natural Turn</li>
+                    <li>Natural Turn with Hesitation</li>
+                    <li>Natural Pivot Turn</li>
+                    <li>Natural Spin Turn</li>
+                    <li>Progressive Chasse</li>
+                    <li>Chasse Reverse Turn</li>
+                    <li>Forward Lock</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Closed Impetus</li>
+                    <li>Back Lock</li>
+                    <li>Reverse Pivot</li>
+                    <li>Progressive Chasse to R</li>
+                    <li>Tipple Chasse to R</li>
+                    <li>Running Finish</li>
+                    <li>Natural Turn and Back Lock</li>
+                    <li>Double Reverse Spin</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Tango (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Walk</li>
+                    <li>Progressive Side Step</li>
+                    <li>Progressive Link</li>
+                    <li>Closed Promenade</li>
+                    <li>Rock Turn</li>
+                    <li>Open Reverse Turn , Lady Outside</li>
+                    <li>Back Corte</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Open Reverse Turn, Lady In Line</li>
+                    <li>Progressive Side Step Reverse Turn</li>
+                    <li>Open Promenade</li>
+                    <li>L.F. and R.F. Rocks</li>
+                    <li>Natural Twist Turn</li>
+                    <li>Natural Promenade Turn</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Slow Foxtrot (Bronze)
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="grid px-4 sm:grid-cols-2">
+                <div>
+                  <ul>
+                    <li>Feather</li>
+                    <li>Three Step</li>
+                    <li>Natural Turn</li>
+                    <li>Reverse Turn</li>
+                  </ul>
+                </div>
+                <div class="-mt-8 sm:mt-0">
+                  <ul>
+                    <li>Closed Impetus and Feather Finish</li>
+                    <li>Natural Weave</li>
+                    <li>Change Of Direction</li>
+                    <li>Basic Weave</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2>Dress Code</h2>
+          <h3>Male</h3>
+          <ol>
+            <li>
+              Plain black trousers and plain white long sleeves shirt with black tie or bow tie.
+            </li>
+            <li>
+              Rolled up sleeves are strictly not allowed, black narrow belt with small buckle.
+            </li>
+            <li>Black Latin or ballroom shoes worn with black socks.</li>
+          </ol>
+          <h3>Female</h3>
+          <ol>
+            <li>Simple dress of same colour and material.</li>
+            <li>
+              No decorations such as sequins, lace, rhinestones, beads, feathers, fringes, etc.
+            </li>
+            <li>No plunging or revealing front neckline or backline lower than top of armpit.</li>
+            <li>No spaghetti strap, off shoulder and/or cut outs.</li>
+            <li>Skirts must be of one length hem throughout.</li>
+            <li>Latin dress must be at least knee length.</li>
+            <li>Ballroom dress length must not be more than 10cm above top of sock line</li>
+            <li>Only light make-up is permitted but false eyes lashes are strictly not allowed.</li>
+            <li>
+              No accessories (e.g. armbands, wristbands, chokers and/or headbands) are allowed.
+            </li>
+            <li>Only black hair band is allowed.</li>
+            <li>
+              Dancing shoes with blocked heels only (maximum 3.5cm high) must be worn with white
+              ankle socks.
+            </li>
+          </ol>
+
+          <h2>Music</h2>
+          <p>
+            In all events, the selected music will be provided by the organizer. All contestants
+            must strictly perform his/her dance with the music accordingly. If the submission uses
+            the incorrect event’s music, the submission will be disqualified.
+          </p>
+
+          <h2>Video Submission</h2>
+          <h3>Guidelines & Requirements</h3>
+          <ol>
+            <li>Video length shall not exceed 3 minutes 30 seconds.</li>
+            <li>Video must be uploaded in MP4 format (.mp4).</li>
+            <li>Video size shall not exceed 1GB.</li>
+            <li>
+              This is strictly a dance contest. Hence additional video editing is strictly NOT
+              allowed.
+            </li>
+            <li>
+              Video must be taken in full-body length to ensure good visual of his / her
+              choreography
+            </li>
+            <li>
+              All contestants must strictly perform his / her dance with the respective music
+              provided by the organizer. If video submitted using the INCORRECT EVENTS / CATEGORY
+              MUSIC will be disqualified.
+            </li>
+            <li>
+              The organizer reserves the rights to disqualify entries that do not strictly follow
+              the video requirements.
+            </li>
+          </ol>
+
+          <h3>Submission</h3>
+          <ol>
+            <li>
+              Visit the submission form
+              <a target="_blank" href="https://l.wanglong.my/dance">here</a>.
+            </li>
+            <li>Log in to your Google account.</li>
+            <li>Follow the steps and fill in all necessary details.</li>
+            <li>Attach your recorded video.</li>
+            <li>Attach your receipt.</li>
+          </ol>
+
+          <h3>Video’s Visibility</h3>
+          <ol>
+            <li>
+              Contestants' videos will be available for viewing by the public. Please ensure that
+              you are comfortable with your video before submitting.
+            </li>
+            <li>
+              By participating in the competitions, you consent to the online broadcast of your
+              video submission in our competition web pages and social media of “10th MDSB Medallist
+              Dancesport Competition (1st Online Version)”. If the participant is a minor, the
+              registration and consent is provided by the parents.
+            </li>
+          </ol>
+
+          <h2>Awards</h2>
+          <ol>
+            <li>
+              All Champions, 1st Runner-Up & 2nd Runner-Up in all event will be awarded with medal
+              and certificate. All 4TH - 6TH placings will be awarded with certificate.
+            </li>
+            <li>
+              ALL participants will be awarded a virtual certificate by email as a token of
+              appreciation.
+            </li>
+            <li>All results shall be announced publicly on our Official Competition Web Page.</li>
+          </ol>
+
+          <h2>Tentative Programme</h2>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                01 - 07 December 2020
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                Registration of participants and video submission via online.
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                08 - 10 September 2020
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                All videos that submitted will be posted to our Official Competition website by
+                first-come-first-served basis by registering for the event and submitting the
+                participation video(s).
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                11 - 13 December 2020
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                First round evaluation session (1st round) for events/categories by panel of
+                adjudicators (12 participants will be selected as semi-finalists).
+                <span class="block mt-3"
+                  >For semi-final events/categories, panel of adjudicators will select only 6
+                  entries into the final round.</span
+                >
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                20 - 23 September 2020
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                All events’ Final Evaluation Session by panel of adjudicators.
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                20 - 23 September 2020
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">Announcement of all events results.</div>
+            </div>
+          </div>
+
+          <h2>Others</h2>
+          <ol>
+            <li>
+              The organizer reserves the rights to change the programme of events without prior
+              notice.
+            </li>
+            <li>
+              All entries and video submission must be received latest by 07 December 2020. Late
+              entries will not be entertained.
+            </li>
+            <li>
+              By participating in the “10th Medalist Dancesport Competition ( 1st Online Bersion )”
+              you are giving permission for the organizer to use your submission video, personal
+              information (image, name, and likeness) in its online social media publishing.
+            </li>
+            <li>
+              The organizer reserves the right to amend the Rules and Regulations without giving
+              prior notification or any reasons thereof.
+            </li>
+            <li>
+              If there is any accident during the competition, the participants and their families
+              cannot claim any responsibility from the organizer.
+            </li>
+          </ol>
+          <hr />
+          <p>
+            For further enquiries, please contact: <br />
+            Soo Thien Wei<br />
+            <a target="_blank" href="tel:+60123039140">+60123039140</a>
+          </p>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div>
+              <div class="justify-between px-4 py-3 sm:px-6 sm:flex">
+                <div class="font-medium leading-5 text-gray-700 truncate">Organizer:</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">Malaysian Dancesport Berhad</div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-3 sm:px-6 sm:flex">
+                <div class="font-medium leading-5 text-gray-700 truncate">Email:</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <a target="_blank" href="mailto:malaysiandancesport@gmail.com"
+                      >malaysiandancesport@gmail.com</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="justify-between px-4 py-3 sm:px-6 sm:flex">
+                <div class="font-medium leading-5 text-gray-700 truncate">Facebook:</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="flex items-center leading-5">
+                    <a target="_blank" href="#">Facebook link here</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-white">
+      <div class="container py-12 md:flex md:items-center md:justify-between">
+        <div class="flex justify-center space-x-6 md:order-2">
+          <a target="_blank" href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Phone</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+              ></path>
+            </svg>
+          </a>
+          <a target="_blank" href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Mail</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+              ></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg>
+          </a>
+
+          <a target="_blank" href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Facebook</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                fill-rule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-base leading-6 text-center text-gray-400">
+            &copy; 2020 Malaysian Dancesport Berhad.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

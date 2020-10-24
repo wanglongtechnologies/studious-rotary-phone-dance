@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.js" defer></script>
+    <title>Dance Competition</title>
+  </head>
+  <body
+    x-data="{ open: false }"
+    :class="{ 'overflow-hidden md:overflow-auto': open === true }"
+    class="antialiased"
+  >
+    <style>
+      .prose a {
+        text-decoration: none;
+      }
+    </style>
+
+    <!-- Navbar-->
+    <header class="relative py-6 bg-gray-800">
+      <div
+        class="fixed inset-0 z-20 h-full transition origin-top-right transform md:hidden"
+        x-show="open"
+        x-description="Mobile menu, show/hide based on menu open state."
+        x-transition:enter="duration-150 ease-out"
+        x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="duration-100 ease-in"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+        style="display: none"
+      >
+        <div
+          class="h-full overflow-hidden bg-indigo-600"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="main-menu"
+        >
+          <div class="flex justify-between h-full px-4 sm:px-6 pt-7">
+            <div class="flex flex-col justify-center h-full px-2 pb-3 -mt-6">
+              <a
+                href="/home"
+                class="block px-3 py-2 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Home</a
+              >
+              <a
+                href="/events"
+                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Events</a
+              >
+              <a
+                href="/rules"
+                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Rules &amp; Regulations</a
+              >
+              <a
+                href="/register"
+                class="flex items-center px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
+                role="menuitem"
+                >Register Now
+                <svg
+                  class="w-8 h-8 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  ></path>
+                </svg>
+              </a>
+            </div>
+            <div class="-mr-2">
+              <button
+                @click="open = false"
+                type="button"
+                class="inline-flex items-center justify-center p-2 text-indigo-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:text-white"
+                aria-label="Close menu"
+              >
+                <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-screen-xl px-4 mx-auto sm:px-6">
+        <nav class="relative flex items-center justify-between sm:h-10 md:justify-center">
+          <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+            <div class="flex items-center justify-between w-full md:w-auto">
+              <a href="/home" aria-label="Home">
+                <img
+                  class="w-auto h-8 sm:h-10"
+                  src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+                  alt="Logo"
+                />
+              </a>
+              <div class="flex items-center -mr-2 md:hidden">
+                <button
+                  @click="open = true"
+                  type="button"
+                  class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
+                  id="main-menu"
+                  aria-label="Main menu"
+                  aria-haspopup="true"
+                  x-bind:aria-expanded="open"
+                >
+                  <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:flex md:space-x-10">
+            <a
+              href="/home"
+              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
+              >Home</a
+            >
+            <a
+              href="/events"
+              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
+              >Events</a
+            >
+            <a
+              href="/rules"
+              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
+              >Rules &amp; Regulations</a
+            >
+          </div>
+          <div
+            class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0"
+          >
+            <a
+              href="#"
+              class="inline-flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+            >
+              Register
+              <svg
+                class="w-5 h-5 ml-2 -mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- Header -->
+    <section class="bg-gray-800">
+      <div class="container pt-12 pb-16 mx-auto sm:pt-20 sm:pb-24">
+        <div class="text-center">
+          <h1
+            class="text-4xl font-extrabold leading-10 text-white sm:text-5xl sm:leading-none sm:tracking-tight"
+          >
+            Event &amp; Dances
+          </h1>
+          <p class="max-w-xl mx-auto mt-5 text-lg leading-7 text-gray-400 sm:text-xl">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, laborum doloribus
+            dolores explicabo
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- Content -->
+    <div class="relative pt-16 pb-6 bg-white sm:pt-20">
+      <div class="container">
+        <div class="mx-auto prose text-gray-600">
+          <h2>Song List</h2>
+          <h3>Grade A (up to Gold Syllabus)</h3>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Ballroom Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Quickstep
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Foxtrot
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="grid grid-cols-2 mt-4 space-x-6">
+                    <a href="#" class="flex items-center leading-5">
+                      <svg
+                        class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      Cha Cha
+                    </a>
+                    <a href="#" class="flex items-center leading-5">
+                      <svg
+                        class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      Jive
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Samba
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Synchronize
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Jive
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Samba
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3>Grade B (up to Bronze Syllabus)</h3>
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 bg-gray-100 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Ballroom Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Quickstep
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Quickstep
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Foxtrot
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Waltz
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Tango
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Solo
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="grid grid-cols-2 mt-4 space-x-6">
+                    <a href="#" class="flex items-center leading-5">
+                      <svg
+                        class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      Cha Cha
+                    </a>
+                    <a href="#" class="flex items-center leading-5">
+                      <svg
+                        class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      Jive
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="mt-2 sm:mt-0">
+                  <div class="grid grid-cols-2 mt-4 space-x-6">
+                    <a href="#" class="flex items-center leading-5">
+                      <svg
+                        class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      Cha Cha
+                    </a>
+                    <a href="#" class="flex items-center leading-5">
+                      <svg
+                        class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                      Jive
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Samba
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="px-4 py-2 bg-gray-100 border-t border-gray-200 sm:px-6">
+              <div
+                class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display"
+              >
+                Latin Synchronize
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 8 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Jive
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 12 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Jive
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Under 16 and below</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Samba
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">Adults</div>
+                <div class="grid grid-cols-2 mt-4 space-x-6">
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Cha Cha
+                  </a>
+                  <a href="#" class="flex items-center leading-5">
+                    <svg
+                      class="flex-shrink-0 w-6 h-6 mr-2 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Rumba
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-white">
+      <div class="container py-12 md:flex md:items-center md:justify-between">
+        <div class="flex justify-center space-x-6 md:order-2">
+          <a href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Phone</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+              ></path>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Mail</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+              ></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg>
+          </a>
+
+          <a href="#" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Facebook</span>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                fill-rule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-base leading-6 text-center text-gray-400">
+            &copy; 2020 Malaysian Dancesport Berhad.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
