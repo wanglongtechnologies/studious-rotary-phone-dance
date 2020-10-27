@@ -2656,10 +2656,6 @@ video {
   z-index: 20;
 }
 
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .transform {
   --transform-translate-x: 0;
   --transform-translate-y: 0;
