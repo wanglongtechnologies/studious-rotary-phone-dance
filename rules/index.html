@@ -17,79 +17,19 @@
   >
     <!-- Navbar-->
     <header class="relative py-6 bg-gray-800">
-      <div
-        class="fixed inset-0 z-20 h-full transition origin-top-right transform md:hidden"
-        x-show="open"
-        x-description="Mobile menu, show/hide based on menu open state."
-        x-transition:enter="duration-150 ease-out"
-        x-transition:enter-start="opacity-0 scale-95"
-        x-transition:enter-end="opacity-100 scale-100"
-        x-transition:leave="duration-100 ease-in"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-95"
-        style="display: none"
-      >
-        <div
-          class="h-full overflow-hidden bg-gray-800"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="main-menu"
-        >
+      <div class="fixed inset-0 z-20 h-full transition origin-top-right transform md:hidden" x-show="open" x-description="Mobile menu, show/hide based on menu open state." x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" style="display: none">
+        <div class="h-full overflow-hidden bg-gray-800" role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
           <div class="flex justify-between h-full px-4 sm:px-6 pt-7">
             <div class="flex flex-col justify-center h-full px-2 pb-3 -mt-6">
-              <a
-                href="/home"
-                class="block px-3 py-2 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >Home</a
-              >
-              <a
-                href="/events"
-                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >Events &amp; Music</a
-              >
-              <a
-                href="/rules"
-                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >Rules &amp; Regulations</a
-              >
-              <a
-                href="https://l.wanglong.my/dance" target="_blank"
-                class="flex items-center px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >Register Now
-                <svg
-                  class="w-8 h-8 ml-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  ></path>
-                </svg>
-              </a>
+              <a href="/home" class="block px-3 py-2 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Home</a>
+              <a href="/events" class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Events &amp; Music</a>
+              <a href="/rules" class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Rules &amp; Regulations</a>
+              <a href="/submissions" class="flex items-center px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">View Submissions </a>
             </div>
             <div class="-mr-2">
-              <button
-                @click="open = false"
-                type="button"
-                class="inline-flex items-center justify-center p-2 text-red-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:text-white"
-                aria-label="Close menu"
-              >
+              <button @click="open = false" type="button" class="inline-flex items-center justify-center p-2 text-red-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:text-white" aria-label="Close menu">
                 <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
             </div>
@@ -105,67 +45,21 @@
                 <img class="w-auto h-12" src="../assets/img/mbdc.png" alt="MBDC Logo" />
               </a>
               <div class="flex items-center -mr-2 md:hidden">
-                <button
-                  @click="open = true"
-                  type="button"
-                  class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
-                  id="main-menu"
-                  aria-label="Main menu"
-                  aria-haspopup="true"
-                  x-bind:aria-expanded="open"
-                >
+                <button @click="open = true" type="button" class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-500" id="main-menu" aria-label="Main menu" aria-haspopup="true" x-bind:aria-expanded="open">
                   <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                   </svg>
                 </button>
               </div>
             </div>
           </div>
           <div class="hidden md:flex md:space-x-6 lg:space-x-10">
-            <a
-              href="/home"
-              class="hidden font-medium text-gray-300 transition duration-150 ease-in-out lg:block hover:text-white"
-              >Home</a
-            >
-            <a
-              href="/events"
-              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
-              >Events &amp; Music</a
-            >
-            <a
-              href="/rules"
-              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
-              >Rules &amp; Regulations</a
-            >
+            <a href="/home" class="hidden font-medium text-gray-300 transition duration-150 ease-in-out lg:block hover:text-white">Home</a>
+            <a href="/events" class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white">Events &amp; Music</a>
+            <a href="/rules" class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white">Rules &amp; Regulations</a>
           </div>
-          <div
-            class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0"
-          >
-            <a
-              href="https://l.wanglong.my/dance" target="_blank"
-              class="inline-flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-red-700 border border-transparent rounded-full hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"
-            >
-              Register
-              <svg
-                class="w-5 h-5 ml-2 -mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                ></path>
-              </svg>
-            </a>
+          <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+            <a href="/submissions" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-red-700 border border-transparent rounded-full hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"> Submissions </a>
           </div>
         </nav>
       </div>
