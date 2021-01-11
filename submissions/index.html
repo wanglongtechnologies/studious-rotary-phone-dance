@@ -190,14 +190,14 @@
             .split(' - ')[0];
           let entry_event = responses[i][2].split(' (')[0].split(': ')[1];
 
-          data.setAttribute('data-name', responses[i][1]);
+          data.setAttribute('data-name', responses[i][4] === '-' ? responses[i][1] : responses[i][1] + ' & ' + responses[i][4]);
           data.setAttribute('data-group', entry_group);
           data.setAttribute('data-age', entry_age);
           data.setAttribute('data-event', entry_event);
 
           link.href = responses[i][3];
           id.innerHTML = responses[i][0];
-          name.innerHTML = responses[i][1];
+          name.innerHTML = responses[i][4] === '-' ? responses[i][1] : responses[i][1] + ' & ' + responses[i][4];
           group.innerHTML = entry_group;
           event.innerHTML = responses[i][2].split(': ')[1];
 
