@@ -1,3 +1,5 @@
+<!-- @format -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,72 +12,22 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.js" defer></script>
     <title>Dance Competition</title>
   </head>
-  <body
-    x-data="{ open: false }"
-    :class="{ 'overflow-hidden md:overflow-auto': open === true }"
-    class="antialiased"
-  >
+  <body x-data="{ open: false }" :class="{ 'overflow-hidden md:overflow-auto': open === true }" class="antialiased">
     <!-- Navbar-->
     <header class="relative py-6 bg-gray-800">
-      <div
-        class="fixed inset-0 z-20 h-full transition origin-top-right transform md:hidden"
-        x-show="open"
-        x-description="Mobile menu, show/hide based on menu open state."
-        x-transition:enter="duration-150 ease-out"
-        x-transition:enter-start="opacity-0 scale-95"
-        x-transition:enter-end="opacity-100 scale-100"
-        x-transition:leave="duration-100 ease-in"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-95"
-        style="display: none"
-      >
-        <div
-          class="h-full overflow-hidden bg-gray-800"
-          role="menu"
-          aria-orientation="vertical"
-          aria-labelledby="main-menu"
-        >
+      <div class="fixed inset-0 z-20 h-full transition origin-top-right transform md:hidden" x-show="open" x-description="Mobile menu, show/hide based on menu open state." x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" style="display: none">
+        <div class="h-full overflow-hidden bg-gray-800" role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
           <div class="flex justify-between h-full px-4 sm:px-6 pt-7">
             <div class="flex flex-col justify-center h-full px-2 pb-3 -mt-6">
-              <a
-                href="/home"
-                class="block px-3 py-2 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >Home</a
-              >
-              <a
-                href="/events"
-                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >Events &amp; Music</a
-              >
-              <a
-                href="/rules"
-                class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >Rules &amp; Regulations</a
-              >
-              <a
-                href="/submissions"
-                class="flex items-center px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white"
-                role="menuitem"
-                >View Submissions
-              </a>
+              <a href="/home" class="block px-3 py-2 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Home</a>
+              <a href="/events" class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Events &amp; Music</a>
+              <a href="/rules" class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Rules &amp; Regulations</a>
+              <a href="/submissions" class="flex items-center px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">View Submissions </a>
             </div>
             <div class="-mr-2">
-              <button
-                @click="open = false"
-                type="button"
-                class="inline-flex items-center justify-center p-2 text-red-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:text-white"
-                aria-label="Close menu"
-              >
+              <button @click="open = false" type="button" class="inline-flex items-center justify-center p-2 text-red-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:text-white" aria-label="Close menu">
                 <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"
-                  ></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
               </button>
             </div>
@@ -91,53 +43,21 @@
                 <img class="w-auto h-12" src="../assets/img/mbdc.png" alt="MBDC Logo" />
               </a>
               <div class="flex items-center -mr-2 md:hidden">
-                <button
-                  @click="open = true"
-                  type="button"
-                  class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
-                  id="main-menu"
-                  aria-label="Main menu"
-                  aria-haspopup="true"
-                  x-bind:aria-expanded="open"
-                >
+                <button @click="open = true" type="button" class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-500" id="main-menu" aria-label="Main menu" aria-haspopup="true" x-bind:aria-expanded="open">
                   <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    ></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                   </svg>
                 </button>
               </div>
             </div>
           </div>
           <div class="hidden md:flex md:space-x-6 lg:space-x-10">
-            <a
-              href="/home"
-              class="hidden font-medium text-gray-300 transition duration-150 ease-in-out lg:block hover:text-white"
-              >Home</a
-            >
-            <a
-              href="/events"
-              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
-              >Events &amp; Music</a
-            >
-            <a
-              href="/rules"
-              class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white"
-              >Rules &amp; Regulations</a
-            >
+            <a href="/home" class="hidden font-medium text-gray-300 transition duration-150 ease-in-out lg:block hover:text-white">Home</a>
+            <a href="/events" class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white">Events &amp; Music</a>
+            <a href="/rules" class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white">Rules &amp; Regulations</a>
           </div>
-          <div
-            class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0"
-          >
-            <a
-              href="/submissions"
-              class="inline-flex items-center justify-center px-6 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-red-700 border border-transparent rounded-full hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"
-            >
-              Submissions
-            </a>
+          <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+            <a href="/submissions" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-red-700 border border-transparent rounded-full hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"> Submissions </a>
           </div>
         </nav>
       </div>
@@ -146,11 +66,7 @@
     <section class="bg-gray-800">
       <div class="container pt-10 pb-24 mx-auto sm:pt-14 sm:pb-28 md:pt-24 md:pb-32">
         <div class="text-center">
-          <h1
-            class="text-4xl font-extrabold leading-10 text-white sm:text-5xl sm:leading-none sm:tracking-tight"
-          >
-            Submissions
-          </h1>
+          <h1 class="text-4xl font-extrabold leading-10 text-white sm:text-5xl sm:leading-none sm:tracking-tight">Submissions</h1>
         </div>
       </div>
     </section>
@@ -159,37 +75,21 @@
       <div class="container">
         <div class="p-6 bg-gray-100 rounded-md">
           <div>
-            <label for="search" class="block text-sm font-medium leading-5 text-gray-700"
-              >Search filter</label
-            >
-            <input
-              id="street_address"
-              placeholder="e.g. Ricardo Cooper"
-              class="block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5"
-            />
+            <label for="search" class="block text-sm font-medium leading-5 text-gray-700">Search participant</label>
+            <input onkeyup="filterEntries()" id="search" placeholder="e.g. Ricardo Cooper" class="block w-full mt-1 transition duration-150 ease-in-out form-input sm:text-sm sm:leading-5" />
           </div>
           <div class="grid gap-3 mt-3 md:grid-cols-3">
             <div>
-              <label for="group" class="block text-sm font-medium leading-5 text-gray-700"
-                >Group</label
-              >
-              <select
-                id="group"
-                class="block w-full py-2 pl-3 pr-10 mt-1 text-base leading-6 border-gray-300 form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-              >
+              <label for="group" class="block text-sm font-medium leading-5 text-gray-700">Group</label>
+              <select onchange="filterEntries()" id="group" class="block w-full py-2 pl-3 pr-10 mt-1 text-base leading-6 border-gray-300 form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
                 <option selected>All</option>
                 <option>Group A</option>
                 <option>Group C</option>
               </select>
             </div>
             <div>
-              <label for="age" class="block text-sm font-medium leading-5 text-gray-700"
-                >Age Group</label
-              >
-              <select
-                id="age"
-                class="block w-full py-2 pl-3 pr-10 mt-1 text-base leading-6 border-gray-300 form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-              >
+              <label for="age" class="block text-sm font-medium leading-5 text-gray-700">Age</label>
+              <select onchange="filterEntries()" id="age" class="block w-full py-2 pl-3 pr-10 mt-1 text-base leading-6 border-gray-300 form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
                 <option selected>All</option>
                 <option>Under 12 and below</option>
                 <option>Under 16 and below</option>
@@ -197,13 +97,8 @@
               </select>
             </div>
             <div>
-              <label for="dance" class="block text-sm font-medium leading-5 text-gray-700"
-                >Dance</label
-              >
-              <select
-                id="dance"
-                class="block w-full py-2 pl-3 pr-10 mt-1 text-base leading-6 border-gray-300 form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
-              >
+              <label for="event" class="block text-sm font-medium leading-5 text-gray-700">Event</label>
+              <select onchange="filterEntries()" id="event" class="block w-full py-2 pl-3 pr-10 mt-1 text-base leading-6 border-gray-300 form-select focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
                 <option selected>All</option>
                 <option>Ballroom Solo</option>
                 <option>Latin Solo</option>
@@ -213,192 +108,7 @@
           </div>
         </div>
         <div class="mt-6 overflow-hidden bg-white shadow sm:rounded-md">
-          <ul>
-            <li>
-              <a
-                href="#"
-                class="block transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
-              >
-                <div class="flex items-center px-4 py-4 sm:px-6">
-                  <div class="flex items-center flex-1 min-w-0">
-                    <div class="flex-shrink-0">
-                      <div class="w-16 px-1 text-3xl font-semibold text-gray-300">87</div>
-                    </div>
-                    <div class="flex-1 min-w-0 px-4">
-                      <div>
-                        <div
-                          class="flex items-center text-sm font-medium leading-5 text-gray-600 truncate"
-                        >
-                          Ricardo Cooper
-                          <span
-                            class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-blue-100 text-blue-800"
-                          >
-                            Group A
-                          </span>
-                        </div>
-                        <div class="flex items-center mt-2 text-sm leading-5 text-gray-500">
-                          <span class="truncate">Ballroom Solo - Under 12 & Below</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <!-- Heroicon name: chevron-right -->
-                    <svg
-                      class="w-5 h-5 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="border-t border-gray-200">
-              <a
-                href="#"
-                class="block transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
-              >
-                <div class="flex items-center px-4 py-4 sm:px-6">
-                  <div class="flex items-center flex-1 min-w-0">
-                    <div class="flex-shrink-0">
-                      <div class="w-16 px-1 text-3xl font-semibold text-gray-300">92</div>
-                    </div>
-                    <div class="flex-1 min-w-0 px-4">
-                      <div>
-                        <div
-                          class="flex items-center text-sm font-medium leading-5 text-gray-600 truncate"
-                        >
-                          Ricardo Cooper
-                          <span
-                            class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-purple-100 text-purple-800"
-                          >
-                            Group C
-                          </span>
-                        </div>
-                        <div class="flex items-center mt-2 text-sm leading-5 text-gray-500">
-                          <span class="truncate">Ballroom Solo - Under 12 & Below</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <!-- Heroicon name: chevron-right -->
-                    <svg
-                      class="w-5 h-5 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="border-t border-gray-200">
-              <a
-                href="#"
-                class="block transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
-              >
-                <div class="flex items-center px-4 py-4 sm:px-6">
-                  <div class="flex items-center flex-1 min-w-0">
-                    <div class="flex-shrink-0">
-                      <div class="w-16 px-1 text-3xl font-semibold text-gray-300">87</div>
-                    </div>
-                    <div class="flex-1 min-w-0 px-4">
-                      <div>
-                        <div
-                          class="flex items-center text-sm font-medium leading-5 text-gray-600 truncate"
-                        >
-                          Ricardo Cooper
-                          <span
-                            class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-blue-100 text-blue-800"
-                          >
-                            Group A
-                          </span>
-                        </div>
-                        <div class="flex items-center mt-2 text-sm leading-5 text-gray-500">
-                          <span class="truncate">Ballroom Solo - Under 12 & Below</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <!-- Heroicon name: chevron-right -->
-                    <svg
-                      class="w-5 h-5 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li class="border-t border-gray-200">
-              <a
-                href="#"
-                class="block transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
-              >
-                <div class="flex items-center px-4 py-4 sm:px-6">
-                  <div class="flex items-center flex-1 min-w-0">
-                    <div class="flex-shrink-0">
-                      <div class="w-16 px-1 text-3xl font-semibold text-gray-300">92</div>
-                    </div>
-                    <div class="flex-1 min-w-0 px-4">
-                      <div>
-                        <div
-                          class="flex items-center text-sm font-medium leading-5 text-gray-600 truncate"
-                        >
-                          Ricardo Cooper
-                          <span
-                            class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-purple-100 text-purple-800"
-                          >
-                            Group C
-                          </span>
-                        </div>
-                        <div class="flex items-center mt-2 text-sm leading-5 text-gray-500">
-                          <span class="truncate">Ballroom Solo - Under 12 & Below</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <!-- Heroicon name: chevron-right -->
-                    <svg
-                      class="w-5 h-5 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
+          <ul id="submissions"></ul>
         </div>
       </div>
     </div>
@@ -408,42 +118,182 @@
         <div class="flex justify-center space-x-6 md:order-2">
           <a target="_blank" href="tel:+60123039140" class="text-gray-400 hover:text-gray-500">
             <span class="sr-only">Phone</span>
-            <svg
-              class="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-              ></path>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
             </svg>
           </a>
-          <a
-            target="_blank"
-            href="mailto:malaysiandancesport@gmail.com"
-            class="text-gray-400 hover:text-gray-500"
-          >
+          <a target="_blank" href="mailto:malaysiandancesport@gmail.com" class="text-gray-400 hover:text-gray-500">
             <span class="sr-only">Mail</span>
-            <svg
-              class="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-              ></path>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
             </svg>
           </a>
         </div>
         <div class="mt-8 md:mt-0 md:order-1">
-          <p class="text-base leading-6 text-center text-gray-400">
-            &copy; 2020 Malaysian Dancesport Berhad.
-          </p>
+          <p class="text-base leading-6 text-center text-gray-400">&copy; 2020 Malaysian Dancesport Berhad.</p>
         </div>
       </div>
     </footer>
+    <!-- Template -->
+    <template id="submission-template">
+      <li name="entries" class="template-data border-t border-gray-200">
+        <a href="#" class="template-link block transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus:bg-gray-50">
+          <div class="flex items-center px-4 py-4 sm:px-6">
+            <div class="flex items-center flex-1 min-w-0">
+              <div class="flex-shrink-0">
+                <div class="template-id w-16 px-1 text-3xl font-semibold text-gray-300"></div>
+              </div>
+              <div class="flex-1 min-w-0 px-4">
+                <div>
+                  <div class="flex items-center text-sm font-medium leading-5 text-gray-600 truncate">
+                    <span class="template-name"></span>
+                    <span class="template-group ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4"></span>
+                  </div>
+                  <div class="flex items-center mt-2 text-sm leading-5 text-gray-500">
+                    <span class="template-event truncate"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <!-- Heroicon name: chevron-right -->
+              <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </a>
+      </li>
+    </template>
+    <script src="data.js"></script>
+
+    <script>
+      function populateEntries() {
+        let submissions = document.getElementById('submissions');
+        let template = document.getElementById('submission-template');
+
+        for (let i = 0; i < responses.length; i++) {
+          let clone = template.content.cloneNode(true);
+
+          let data = clone.querySelector('.template-data');
+          let link = clone.querySelector('.template-link');
+          let id = clone.querySelector('.template-id');
+          let name = clone.querySelector('.template-name');
+          let group = clone.querySelector('.template-group');
+          let event = clone.querySelector('.template-event');
+
+          let entry_group = responses[i][2].split(': ')[0];
+          let entry_age = responses[i][2]
+            .split(': ')[1]
+            .match(/\(([^)]+)\)/)[1]
+            .split(' - ')[0];
+          let entry_event = responses[i][2].split(' (')[0].split(': ')[1];
+
+          data.setAttribute('data-name', responses[i][1]);
+          data.setAttribute('data-group', entry_group);
+          data.setAttribute('data-age', entry_age);
+          data.setAttribute('data-event', entry_event);
+
+          link.href = responses[i][3];
+          id.innerHTML = responses[i][0];
+          name.innerHTML = responses[i][1];
+          group.innerHTML = entry_group;
+          event.innerHTML = responses[i][2].split(': ')[1];
+
+          if (group.innerHTML === 'Group A') {
+            group.classList.add('bg-blue-100');
+            group.classList.add('text-blue-800');
+          }
+          if (group.innerHTML === 'Group C') {
+            group.classList.add('bg-purple-100');
+            group.classList.add('text-purple-800');
+          }
+
+          submissions.appendChild(clone);
+        }
+      }
+
+      function hideAllEntries() {
+        let entries = document.getElementsByName('entries');
+        for (let i = 0; i < entries.length; i++) {
+          entries[i].style.display = 'none';
+        }
+      }
+
+      function filterEntries() {
+        let search = document.getElementById('search');
+        let group = document.getElementById('group');
+        let age = document.getElementById('age');
+        let event = document.getElementById('event');
+
+        // HIDE ALL
+        hideAllEntries();
+
+        // IF NO VALUES, SHOW ALL
+        if (search.value === '' && group.value === 'All' && age.value === 'All' && event.value === 'All') {
+          let entries = document.getElementsByName('entries');
+          for (let i = 0; i < entries.length; i++) {
+            entries[i].style.display = 'block';
+          }
+        }
+
+        let sort = document.getElementsByName('entries');
+        let allowedSearch = [];
+        let allowedGroup = [];
+        let allowedAge = [];
+        let allowedEvent = [];
+
+        if (search.value === '') {
+          allowedSearch = [...Array(sort.length).keys()];
+        } else {
+          for (let i = 0; i < sort.length; i++) {
+            if (sort[i].getAttribute('data-name').toLowerCase().includes(search.value.toLowerCase())) {
+              allowedSearch.push(i);
+            }
+          }
+        }
+
+        if (group.value == 'All') {
+          allowedGroup = [...Array(sort.length).keys()];
+        } else {
+          for (let i = 0; i < sort.length; i++) {
+            if (sort[i].getAttribute('data-group').toLowerCase() === group.value.toLowerCase()) {
+              allowedGroup.push(i);
+            }
+          }
+        }
+
+        if (age.value == 'All') {
+          allowedAge = [...Array(sort.length).keys()];
+        } else {
+          for (let i = 0; i < sort.length; i++) {
+            if (sort[i].getAttribute('data-age').toLowerCase() === age.value.toLowerCase()) {
+              allowedAge.push(i);
+            }
+          }
+        }
+
+        if (event.value == 'All') {
+          allowedEvent = [...Array(sort.length).keys()];
+        } else {
+          for (let i = 0; i < sort.length; i++) {
+            if (sort[i].getAttribute('data-event').toLowerCase() === event.value.toLowerCase()) {
+              allowedEvent.push(i);
+            }
+          }
+        }
+
+        // SHOW ALL ALLOWED ENTRIES
+        let entries = document.getElementsByName('entries');
+        for (let i = 0; i < entries.length; i++) {
+          if (allowedSearch.includes(i) && allowedGroup.includes(i) && allowedAge.includes(i) && allowedEvent.includes(i)) {
+            entries[i].style.display = 'block';
+          }
+        }
+      }
+
+      populateEntries();
+    </script>
   </body>
 </html>
