@@ -1,0 +1,327 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.js" defer></script>
+    <title>Dance Competition</title>
+  </head>
+
+  <body x-data="{ open: false }" :class="{ 'overflow-hidden md:overflow-auto': open === true }" class="antialiased">
+    <style>
+      .prose a {
+        text-decoration: none;
+      }
+    </style>
+    <!-- Navbar-->
+    <header class="relative py-6 bg-gray-800">
+      <div class="fixed inset-0 z-20 h-full transition origin-top-right transform md:hidden" x-show="open" x-description="Mobile menu, show/hide based on menu open state." x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" style="display: none">
+        <div class="h-full overflow-hidden bg-gray-800" role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
+          <div class="flex justify-between h-full px-4 sm:px-6 pt-7">
+            <div class="flex flex-col justify-center h-full px-2 pb-3 -mt-6">
+              <a href="/home" class="block px-3 py-2 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Home</a>
+              <a href="/events" class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Events &amp; Music</a>
+              <a href="/rules" class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Rules &amp; Regulations</a>
+              <a href="/submissions" class="flex items-center px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">View Submissions </a>
+              <a href="/results" class="block px-3 py-2 mt-1 text-2xl font-medium text-gray-100 transition duration-150 ease-in-out sm:text-3xl hover:text-white focus:outline-none focus:text-white" role="menuitem">Results</a>
+            </div>
+            <div class="-mr-2">
+              <button @click="open = false" type="button" class="inline-flex items-center justify-center p-2 text-red-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:text-white" aria-label="Close menu">
+                <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-screen-xl px-4 mx-auto sm:px-6">
+        <nav class="relative flex items-center justify-between sm:h-10 md:justify-center">
+          <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+            <div class="flex items-center justify-between w-full md:w-auto">
+              <a class="inline-flex space-x-3" href="/home" aria-label="Home"> <img class="w-auto h-12" src="../assets/img/mdsb.svg" alt="MDSB Logo" /> <img class="w-auto h-12" src="../assets/img/mbdc.png" alt="MBDC Logo" /> </a>
+              <div class="flex items-center -mr-2 md:hidden">
+                <button @click="open = true" type="button" class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-full hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-500" id="main-menu" aria-label="Main menu" aria-haspopup="true" x-bind:aria-expanded="open">
+                  <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:flex md:space-x-6 lg:space-x-10">
+            <a href="/home" class="hidden font-medium text-gray-300 transition duration-150 ease-in-out lg:block hover:text-white">Home</a>
+            <a href="/events" class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white">Events &amp; Music</a>
+            <a href="/rules" class="font-medium text-gray-300 transition duration-150 ease-in-out hover:text-white">Rules &amp; Regulations</a>
+          </div>
+          <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+            <a href="/submissions" class="mr-2 inline-flex items-center justify-center px-6 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-red-700 border border-transparent rounded-full hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"> Submissions </a>
+            <a href="/results" class="inline-flex items-center justify-center px-6 py-3 text-base font-medium leading-6 text-white whitespace-no-wrap transition duration-150 ease-in-out bg-red-700 border border-transparent rounded-full hover:bg-red-600 focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700"> Results </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- Header -->
+    <section class="bg-gray-800">
+      <div class="container pt-10 pb-24 mx-auto sm:pt-14 sm:pb-28 md:pt-24 md:pb-32">
+        <div class="text-center">
+          <h1 class="text-4xl font-extrabold leading-10 text-white sm:text-5xl sm:leading-none sm:tracking-tight">Results</h1>
+        </div>
+      </div>
+    </section>
+    <!-- Content -->
+    <div class="relative pt-16 pb-6 bg-white sm:pt-20">
+      <div class="container">
+        <div class="mx-auto prose text-gray-600">
+          <h2>Semi-Final</h2>
+          <!---->
+          <div class="overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 text-black bg-gray-200 sm:px-6">
+              <div class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display">Group A - Latin Solo (Under 12 and Below - Cha Cha & Jive)</div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">1 - CHA NIEN XIN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">3 - CHA NIEN CHEN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">5 - JESSICA CHUA KA WEN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">8 - CAMILLE CHIAH</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">45 - OH KAI LING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">51 - NG ZE YU</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">66 - LAU GUAN XYN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">67 - POW EN LING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">68 - CHONG YU TING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">70 - CHEW ZI QI</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">72 - GOH JAZLYN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">81 - ISABELLE LOW YEE YUE</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">86 - SEE WEN XU</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">89 - NG XIN YING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">104 - YAP ZHEN ROU</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">145 - NG SZE YING</div>
+              </div>
+            </div>
+          </div>
+          <!---->
+          <div class="mt-4 overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 text-black bg-gray-200 sm:px-6">
+              <div class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display">Group A - Latin Solo (Under 16 and Below - Rumba & Samba)</div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">2 - CHA NIEN XIN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">4 - CHA NIEN CHEN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">6 - JESSICA CHUA KA WEN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">50 - NG ZE YU</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">58 - EUNICE CHOONG PEI EN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">60 - CHUA ZE YING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">62 - SHANNEN CHUA XIN NI</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">69 - CHONG YU TING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">79 - LEE SHI RONG</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">146 - NG SZE YING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">147 - ANG ZHI YING JANE</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">148 - TAN YU SYN</div>
+              </div>
+            </div>
+          </div>
+          <!---->
+          <div class="mt-4 overflow-hidden bg-white border border-gray-200 rounded-md">
+            <div class="px-4 py-2 text-black bg-gray-200 sm:px-6">
+              <div class="text-sm font-semibold leading-5 tracking-wide uppercase truncate font-display">Group C - Latin Solo (Under 12 and Below - Cha Cha & Jive)</div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">11 - KIMBERLY CHANG KAI MUN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">12 - ISABEL CHONG WAN XIN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">17 - WONG YU EN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">19 - CHEE XIN YI</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">24 - CHONG JIA WEN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">54 - NATALIA NELSON</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">76 - WONG EE SHUEN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">77 - MELISSA RENEE LEE SHU CHING</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">96 - VALERIE WOON YIN YI</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">112 - NICOLE TEE YEN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">124 - CHEW YUN HAN</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">137 - HA ANN ROU</div>
+              </div>
+            </div>
+            <div class="border-t border-gray-200">
+              <div class="px-4 py-4 sm:px-6">
+                <div class="leading-5 truncate">143 - NG XIN HUEY</div>
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-white">
+      <div class="container py-12 md:flex md:items-center md:justify-between">
+        <div class="flex justify-center space-x-6 md:order-2">
+          <a target="_blank" href="tel:+60123039140" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Phone</span> <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+          </a>
+          <a target="_blank" href="mailto:malaysiandancesport@gmail.com" class="text-gray-400 hover:text-gray-500">
+            <span class="sr-only">Mail</span>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-base leading-6 text-center text-gray-400">&copy; 2020 Malaysian Dancesport Berhad.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
