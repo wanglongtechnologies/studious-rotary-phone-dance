@@ -105,7 +105,12 @@
         for (let i = 0; i < responses.length; i++) {
           let response = responses[i];
           if (response[0] === id) {
-            return response[0] + ' - ' + response[1].toUpperCase();
+              if(response[4] === '-') {
+                return response[0] + ' - ' + response[1].toUpperCase();
+              } else {
+                return response[0] + ' - ' + response[1].toUpperCase() + ' & ' + response[4].toUpperCase();
+              }
+            
           }
         }
       }
